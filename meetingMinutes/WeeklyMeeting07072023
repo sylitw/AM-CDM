@@ -1,0 +1,39 @@
+Agenda
+1.	Hunter shared tests and thoughts on a use case and potential revision of TIC
+Current CDM classes are created using enumerations (not sure if enumerations is a correct term from Hunter)
+Should we consider replacing enumerations by string list or table for improving the architecture of the database
+
+Questions were discussed: 
+Does string list equal to enumeration?  
+Different scenarios and cases, such as 
+•	3D dataset, coordinate systems, reference IDs, should be briefly discussed 
+•	address, phone number, and country are the information can be defined as different types, like table
+Should this be a database development issue or data model development problem?
+This is a way to reduce the redundancy of the information
+Create a primitive data type in sadl, for example for address, 
+
+Other experience: 
+How does IFO deal with the resource level in practice?  How do they standardize the generic data types with semantic meaning.  Yan will talk to Serm and provide some updates next week
+
+•	In Measurement type, we may want to add confidence interval 
+•	The way to create the inheritance is create another type and identify the relation
+•	Measurement is a container for different types of measurement values 
+•	The measurement can inherit the quantity type; in some circumstances, present measurement type is too complicated
+•	Coordinate can be simply described using value and unit instead of Measurement
+•	A separate sadl to define , example, address is a class defined in somewhere
+
+
+2.	Shaw shared some ideas about data models for microstructure
+•	The coordinate systems about 
+•	Sample from part for specimens for characterization
+•	Part, coupon, sample, with no geometric relationship
+•	Specimen is cut from sample for imaging
+•	Metadata for microstructure, especially for SEM and EBSD, MO and XRD are also considered
+•	Metadata for EBSD is focused, including magnification, working distance, beaning, etc
+•	Name and composition of alloys are included
+•	The information about phase, grain, texture, and defects are included
+•	Metadata about defects, like micro-voids are created. 
+•	We may use and combine CDM with Shaw’s work for creating a use case.
+
+
+3.	Alex walked through and shared a use case last week. We can schedule another meeting for any additional discussions.
