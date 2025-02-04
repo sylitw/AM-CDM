@@ -2,10 +2,6 @@ uri "http://kdl.ge.com/AM-CDM-material" alias AM-CDM-material version "$Revision
 
 import "http://kdl.ge.com/AM-CDM-base".
 
-//PowderLot (note "Unique lot of powder material used in one or more builds.") is a type of Feedstock,
-//	described by virginOrUsed (note "If the powder lot is new (virgin) or been used previously. The suggested values are Virgin or Used.") with a single value of type string,
-//	described by reuseNumber (note "The number of times the powder lot has been used, 0 if virgin or 1 or more if reused. If 0 the powder has never been used, if 1 the powder has been used once, etc.") with a single value of type int.
-
 MaterialStockType (note "Information about a material, such as consumables, build plate, and feedstock material.") is a class,
 	described by materialstockID (note "Unique identifier for specific material instance.  For example, a unique lot number.") with a single value of type string,
 	described by materialType (note "Generic material this specific instance is an instantiation of, such as Ni-based superalloy or stainless steel.") with a single value of type MaterialType,
@@ -15,7 +11,6 @@ MaterialStockType (note "Information about a material, such as consumables, buil
 	described by materialstockCertificate (note "Link to a material stock certificate.") with a single value of type Document,
 	described by materialstockCertificationDate (note "Purchase/certification date of a material stock.") with a single value of type dateTime,
 	described by materialProperties (note "Measured properties of the feedstock.") with values of type MaterialPropertiesType,
-// *** Missing: build substrate preparation
 
 Feedstock (note "Information about a feedstock used as input to an additive manufacturing machine, including physical form, location, and purchasing information.") is a class,
 	described by feedstockName (note "A name for operational purposes") with a single value of type string,
@@ -37,10 +32,6 @@ materialStorage (note "details about how to store the material") is a class,
 	described by storageEnvironment (note "Material stock storage environment details - temperature, humidity, light etc.") with a single value of type Document,
 	described by storageRequirements (note "Environmental tolerances, handling standard operating procedure required by a material product.") with a single value of type Document,
 
-
-//ContinuousMaterial is a class,
-//	described by materialstockMaterial (note "Material consumed during build.") with a single value of type Feedstock,
-//	described by quantityOfMaterialstockMaterialUsed (note "Mass of material used in solidified parts.") with a single value of type Measurement,
 
 FeedstockFormType (note "Form of a feedstock.") is a class, must be one of {Powder, Wire, BulkSolid}.
 
@@ -144,17 +135,6 @@ ChemistryElement is a class,
 	described by minPercent with a single value of type double,
 	described by maxPercent with a single value of type double,
 	described by avgPercent with a single value of type double.
-/*
-ChemistryElement is a class,
-	described by chemistryElement with a single value of type PeriodicElement,
-	// could do the below or have an attribute that defines whether the percent is weight or atomic
-	described by minWeightPercent with a single value of type Measurement,
-	described by maxWeightPercent with a single value of type Measurement,
-	described by avgWeightPercent with a single value of type Measurement,
-	described by minAtomicPercent with a single value of type Measurement,
-	described by maxAtomicPercent with a single value of type Measurement,
-	described by avgAtomicPercent with a single value of type Measurement.
-*/
 
 PeriodicElement (note "Information about individual elements.") is a class,
 	described by elementName (note "element name, e.g., Carbon.") with a single value of type string,
