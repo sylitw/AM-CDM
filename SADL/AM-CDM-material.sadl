@@ -2,7 +2,7 @@ uri "http://kdl.ge.com/AM-CDM-material" alias AM-CDM-material version "$Revision
 
 import "http://kdl.ge.com/AM-CDM-base".
 	
-MaterialStockType (note "Information about a material covering feedstock, reusables, and consumables.") is a class,
+MaterialStock (note "Information about a material covering feedstock, reusables, and consumables.") is a class,
 	described by materialstockID (note "Unique identifier for specific material instance. For example, a unique lot number.") with a single value of type string, 
 	described by actualChemistry (note "Chemistry characterization for the specific material instance, which may be different from the nominal chemistry.") with a single value of type Chemistry,
 	described by materialstockSpecification (note "Material data sheet provided by a material supplier or manufacturer.") with a single value of type Document,
@@ -12,15 +12,15 @@ MaterialStockType (note "Information about a material covering feedstock, reusab
 	described by materialstockCertificate (note "Link to a material stock certificate.") with a single value of type Document,
 	described by materialstockCertificationDate (note "Purchase/certification date of a material stock.") with a single value of type dateTime,
 	described by materialProperties (note "Measured properties of the feedstock.") with values of type MaterialPropertiesType,
+	described by feedstock (note "Information about a feedstock used as input to an additive manufacturing machine, including physical form, location, and purchasing information.") with a single value of type FeedstockType,
 
-Feedstock (note "Information about a feedstock used as input to an additive manufacturing machine, including physical form, location, and purchasing information.") is a class,
+FeedstockType (note "Information about a feedstock used as input to an additive manufacturing machine, including physical form, location, and purchasing information.") is a class,
 	described by feedstockName (note "A name for operational purposes") with a single value of type string,
 	described by materialType (note "Generic material this specific instance is an instantiation of, such as Ni-based superalloy or stainless steel.") with a single value of type MaterialType,
 	described by materialGrade (note "Standard grade to which the material product conforms, such as 718 or 17-4 PH steel.") with a single value of type string,
 	described by feedstockForm (note "Form of a material stock, and the potential values are defined in FeedstockFormType.") with a single value of type FeedstockFormType,
 	described by packagingRequirements (note "Packaging standard operating procedure and environmental tolerances required by a material product.") with a single value of type Document,
 	described by mixedFeedstock (note "Parent or parents of feedstock, if it is blended or mixed.") with values of type ParentFeedstock.
-	described by materialStock (note "Material stock information") with a single value of type MaterialStockType
 
 materialPurchaseHistory (note "information about purchasing material, including vendor, manufacturer etc.") is a class,
 	described by materialstockVendor (note "Name of the feedstock vendor. Not specified if feedstock is a blend from multiple lots.") with a single value of type Organization,
@@ -34,7 +34,6 @@ materialStorage (note "details about how to store the material") is a class,
 	described by materialstockLocation (note "Physical location of a material stock.") with a single value of type Address,
 	described by storageEnvironment (note "Material stock storage environment details - temperature, humidity, light etc.") with a single value of type Document,
 	described by storageRequirements (note "Environmental tolerances, handling standard operating procedure required by a material product.") with a single value of type Document,
-
 
 FeedstockFormType (note "Form of a feedstock.") is a class, must be one of {Powder, Wire, BulkSolid}.
 
@@ -59,17 +58,15 @@ MaterialSpecification (note "The ideal specification of a material, e.g., a perf
 MaterialPropertiesType (note "Base class of material properties. Can be sub-classed to define specific types of material properties.") is a class,
 	described by derivedBy (note "How property was determined.") with a single value of type PropertyDerivedBy,
 	described by propertyReferenceStandard (note "ASTM or other standard measurement conforms to.") with a single value of type Document,
-	described by intrinsicMaterialProperties (note "Properties that are independent of the AM processing/part characteristics, such as x-ray density, lattice structure, and heat capacity.") with values of type IntrinsicMaterialProperties,
-	described by extrinsicMaterialProperties (note "Properties that are dependent upon the AM processing/part characteristics, such as tap density, and thermal conductivity.") with values of type ExtrinsicMaterialProperties,
+	described by materialProperties with values of type MaterialProperties,
 	described by propertyDataSheet (note "Reference document used to provide material properties.") with a single value of type Document.
 
 PropertyDerivedBy is a class, must be one of {Measured, Predicted}.
 
-IntrinsicMaterialProperties (note "Properties that are independent of the AM processing/part characteristics, such as x-ray density, lattice structure, and heat capacity.") is a type of MaterialProperties.
+MaterialProperties is a class,
+	described by propertyType with a single value of type MaterialPropertyType.
 
-ExtrinsicMaterialProperties (note "Properties that are dependent upon the AM processing/part characteristics, such as tap density, and thermal conductivity.") is a type of MaterialProperties.
-
-MaterialProperties is a class.
+MaterialPropertyType is a class, must be one of {Intrinsic, Extrinsic}.
 
 ThermodynamicProperties is a type of IntrinsicMaterialProperties,
 	described by electricalConductivity with a single value of type Measurement,
