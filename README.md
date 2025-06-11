@@ -48,8 +48,8 @@ The AM-CDM is currently AM process-agnostic, meaning that it does not include AM
 *should we define conformance to the AM CDM? If so, include loose rules*
 
 
-## How to Derive Data Exchange Formats from the CDM - Lead: Shengyen Li (Hunter and Luke?)
-
+## How to Derive Data Exchange Formats from the CDM - Lead: Shengyen Li (Hunter and Luke?); suggest moving this section after What is SADL
+The AM-CDM defines a data structure using SADL format, which focuses on the architecture of the data and metadata instead of the relationship between the information entities. Therefore, it is important to maintain the integrity of the model hierarchy while transforming the file formats. Several software and programming libraries provide functions to convert the file formats among JSON, XML, and SADL [reference, Oxygen XML, DataModelDict etc.] and this manual/paper provides some examples as the supplemental data. 
 
 ## What is SADL - Lead: Kareem Aggour
 The AM-CDM is designed and developed in the Semantic Application Design Language (SADL) (ref6). SADL is both a language and an Eclipse plugin designed to simplify ontology creation. SADL uses a formal, English-like syntax and grammar, enabling users to author ontologies that are automatically converted into the Web Ontology Language (OWL), the W3C standard for semantic modeling (ref7). SADL was specifically developed to make ontologies accessible to non-semantic domain experts, allowing them to read and understand these models with ease. Its intuitive design makes it straightforward for domain experts such as additive engineers and materials scientists to collaborate with computer scientists to rapidly develop ontologies, without requiring those domain experts to become proficient in semantic modeling.
